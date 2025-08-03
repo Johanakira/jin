@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paul's Cleaning Crew Software</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="/manifest.json"> <!-- For PWA features -->
+    <meta name="theme-color" content="#2196F3">
+</head>
+<body>
+    <header>
+        <h1>Paul's Cleaning Crew</h1>
+        <nav>
+            <button id="show-jobs-btn">Jobs</button>
+            <button id="show-clients-btn">Clients</button>
+            <button id="show-add-job-btn">Add Job</button>
+            <button id="show-add-client-btn">Add Client</button>
+        </nav>
+    </header>
+
+    <main>
+        <section id="jobs-section" class="active">
+            <h2>Upcoming & Recent Jobs</h2>
+            <div class="status-filter">
+                <label for="job-status-filter">Filter by Status:</label>
+                <select id="job-status-filter">
+                    <option value="all">All</option>
+                    <option value="Scheduled">Scheduled</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Cancelled">Cancelled</option>
+                </select>
+            </div>
+            <div id="jobs-list" class="data-list">
+                <!-- Jobs will be loaded here by client.js -->
+                <p class="loading-message">Loading jobs...</p>
+            </div>
+        </section>
+
+        <section id="clients-section">
+            <h2>Our Clients</h2>
+            <div id="clients-list" class="data-list">
+                <!-- Clients will be loaded here by client.js -->
+                <p class="loading-message">Loading clients...</p>
+            </div>
+        </section>
+
+        <section id="add-job-section">
+            <h2>Add New Job</h2>
+            <form id="add-job-form">
+                <label for="job-client">Client:</label>
+                <select id="job-client" name="client_id" required>
+                    <!-- Clients will be loaded here by client.js -->
+                </select>
+
+                <label for="job-date">Date:</label>
+                <input type="date" id="job-date" name="date" required>
+
+                <label for="job-time">Time:</label>
+                <input type="time" id="job-time" name="time" required>
+
+                <label for="job-service">Service:</label>
+                <input type="text" id="job-service" name="service" placeholder="e.g., Deep Clean, Window Wash" required>
+
+                <label for="job-price">Price ($):</label>
+                <input type="number" id="job-price" name="price" step="0.01" min="0" required>
+
+                <label for="job-notes">Notes:</label>
+                <textarea id="job-notes" name="notes" rows="3"></textarea>
+
+                <button type="submit">Add Job</button>
+            </form>
+        </section>
+
+        <section id="add-client-section">
+            <h2>Add New Client</h2>
+            <form id="add-client-form">
+                <label for="client-name">Name:</label>
+                <input type="text" id="client-name" name="name" required>
+
+                <label for="client-phone">Phone:</label>
+                <input type="tel" id="client-phone" name="phone">
+
+                <label for="client-email">Email:</label>
+                <input type="email" id="client-email" name="email">
+
+                <label for="client-address">Address:</label>
+                <textarea id="client-address" name="address" rows="3"></textarea>
+
+                <button type="submit">Add Client</button>
+            </form>
+        </section>
+
+        <!-- Modals for Edit functionality -->
+        <div id="edit-job-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <h2>Edit Job</h2>
+                <form id="edit-job-form">
+                    <input type="hidden" id="edit-job-id">
+                    <label for="edit-job-client">Client:</label>
+                    <select id="edit-job-client" name="client_id" required>
+                        <!-- Clients will be loaded here -->
+                    </select>
+                    <label for="edit-job-date">Date:</label>
+                    <input type="date" id="edit-job-date" name="date" required>
+                    <label for="edit-job-time">Time:</label>
+                    <input type="time" id="edit-job-time" name="time" required>
+                    <label for="edit-job-service">Service:</label>
+                    <input type="text" id="edit-job-service" name="service" required>
+                    <label for="edit-job-price">Price ($):</label>
+                    <input type="number" id="edit-job-price" name="price" step="0.01" min="0" required>
+                    <label for="edit-job-status">Status:</label>
+                    <select id="edit-job-status" name="status">
+                        <option value="Scheduled">Scheduled</option>
+                        <option value="Completed">Completed</option>
+                        <option value="Cancelled">Cancelled</option>
+                    </select>
+                    <label for="edit-job-notes">Notes:</label>
+                    <textarea id="edit-job-notes" name="notes" rows="3"></textarea>
+                    <button type="submit">Save Changes</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="edit-client-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <h2>Edit Client</h2>
+                <form id="edit-client-form">
+                    <input type="hidden" id="edit-client-id">
+                    <label for="edit-client-name">Name:</label>
+                    <input type="text" id="edit-client-name" name="name" required>
+                    <label for="edit-client-phone">Phone:</label>
+                    <input type="tel" id="edit-client-phone" name="phone">
+                    <label for="edit-client-email">Email:</label>
+                    <input type="email" id="edit-client-email" name="email">
+                    <label for="edit-client-address">Address:</label>
+                    <textarea id="edit-client-address" name="address" rows="3"></textarea>
+                    <button type="submit">Save Changes</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="status-message" class="status-message"></div>
+    </main>
+
+    <script src="client.js"></script>
+</body>
+</html>

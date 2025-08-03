@@ -1,0 +1,315 @@
+/* public/style.css */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7f6;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #2196F3; /* Blue */
+    color: white;
+    padding: 1rem 2rem;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.2rem;
+}
+
+nav {
+    margin-top: 1rem;
+}
+
+nav button {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    margin: 0 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+nav button:hover {
+    background-color: #45a049;
+}
+
+main {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+section {
+    display: none; /* Hidden by default, client.js will show/hide */
+    margin-bottom: 2rem;
+}
+
+section.active {
+    display: block;
+}
+
+h2 {
+    color: #2196F3;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Forms */
+form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+form label {
+    font-weight: bold;
+    margin-bottom: 0.2rem;
+    display: block;
+}
+
+form input[type="text"],
+form input[type="date"],
+form input[type="time"],
+form input[type="number"],
+form input[type="tel"],
+form input[type="email"],
+form select,
+form textarea {
+    width: calc(100% - 20px);
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box; /* Include padding in width */
+}
+
+form button[type="submit"] {
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+form button[type="submit"]:hover {
+    background-color: #1976D2;
+}
+
+/* Data Lists (Jobs & Clients) */
+.data-list {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.data-item {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 1.2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.data-item h3 {
+    margin-top: 0;
+    color: #3F51B5; /* Indigo */
+    font-size: 1.3rem;
+}
+
+.data-item p {
+    margin: 0.5rem 0;
+    font-size: 0.95rem;
+}
+
+.data-item .actions {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.data-item .actions button {
+    padding: 0.6rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.data-item .actions .edit-btn {
+    background-color: #FFC107; /* Amber */
+    color: #333;
+}
+.data-item .actions .edit-btn:hover {
+    background-color: #FFB300;
+}
+
+.data-item .actions .delete-btn {
+    background-color: #F44336; /* Red */
+    color: white;
+}
+.data-item .actions .delete-btn:hover {
+    background-color: #D32F2F;
+}
+
+.data-item .actions .complete-btn {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+.data-item .actions .complete-btn:hover {
+    background-color: #45a049;
+}
+
+/* Job Status Styling */
+.job-status-Scheduled {
+    color: #2196F3; /* Blue */
+    font-weight: bold;
+}
+.job-status-Completed {
+    color: #4CAF50; /* Green */
+    font-weight: bold;
+}
+.job-status-Cancelled {
+    color: #F44336; /* Red */
+    font-weight: bold;
+}
+
+/* Status Message */
+.status-message {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    z-index: 1000;
+}
+
+.status-message.show {
+    opacity: 1;
+}
+
+/* Modals */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more responsive */
+    max-width: 700px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Filter for jobs */
+.status-filter {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background-color: #e3f2fd; /* Light blue */
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.status-filter label {
+    font-weight: bold;
+    color: #1976D2;
+}
+
+.status-filter select {
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #90CAF9;
+    background-color: white;
+    font-size: 1rem;
+}
+
+.loading-message {
+    text-align: center;
+    font-style: italic;
+    color: #666;
+    grid-column: 1 / -1; /* Span across all columns */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    header {
+        padding: 1rem;
+    }
+    nav button {
+        display: block;
+        width: calc(100% - 1rem);
+        margin: 0.5rem auto;
+    }
+    main {
+        padding: 1rem;
+    }
+    .data-list {
+        grid-template-columns: 1fr;
+    }
+    form {
+        padding: 1rem;
+    }
+    .modal-content {
+        width: 95%;
+        margin: 20px auto;
+    }
+}
